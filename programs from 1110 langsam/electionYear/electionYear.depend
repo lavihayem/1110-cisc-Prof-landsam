@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1501531301 source:c:\users\rafi\desktop\electionyear\main.cpp
+	<cstdlib>
+	<iostream>
+

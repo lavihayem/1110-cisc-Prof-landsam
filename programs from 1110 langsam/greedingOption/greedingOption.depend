@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1501532710 source:c:\users\rafi\desktop\greedingoption\main.cpp
+	<cstdlib>
+	<iostream>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1501534486 source:c:\users\rafi\desktop\processcharacters\main.cpp
+	<cstdlib>
+	<fstream>
+	<cctype>
+	<iostream>
+

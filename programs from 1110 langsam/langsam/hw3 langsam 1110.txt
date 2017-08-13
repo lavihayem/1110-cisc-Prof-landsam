@@ -1,0 +1,215 @@
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
+
+using namespace std;
+float computeAverage(float test1,float test2,float finalTest),average;
+char letterGrade(float semesterAverage, char);
+void printRecord(string,float,float,float,float,char);
+
+int main()
+{
+    float test1,test2,finalTest,semesterAverage,sum=0,totalAverage=0;
+    int counterSum=0;
+    string name;
+    char letter,finalGrade,grade,maxLetter;
+    ifstream infile;                      //create the file infile for input
+    infile.open("StudentGrades.txt");  //open the file
+
+    if ( !infile.is_open() )              //checks to see if file was opened
+    {
+        // The file could not be opened
+        cout << endl << "ERROR: Unable to open file" << endl;
+        system ("PAUSE");
+        exit(1);
+    }
+    //*********************************************************************************8
+    ofstream outfile;
+    outfile.open("Roster.txt");
+
+    outfile.setf(ios::fixed,ios::floatfield);          // setup output format for
+    outfile.precision(2);
+    // ******************************************************************************
+    infile>>name>>test1>>test2>>finalTest;
+    // while(!infile.eof()){
+    semesterAverage=computeAverage(test1,test2,finalTest);
+    finalGrade=letterGrade(semesterAverage, grade);
+    printRecord( name, test1,test2, finalTest,semesterAverage,finalGrade);
+    // infile>>name>>test1>>test2>>finalTest;
+    //for (int i; i=!infile.eof());i++){
+    //************************************************************************************************************8
+
+    sum=test1+test2+finalTest;
+    average=sum/3;
+
+    // cout<<"The average grade of student is    "<<average<<endl;
+
+    counterSum++;
+    totalAverage=totalAverage + average;
+    //  cout<<counterSum;
+
+
+    cout<<"\n\n The Average of class is    "<<totalAverage/counterSum;
+    outfile<<"\n\t\t\t          Student Grades and Average  "<<endl<<endl;
+
+
+
+    outfile<<"\n\nThe Average of class is     "<<totalAverage/counterSum<<endl;//<<endl;
+    //*******************************************************************
+    float maxGrade=0.0,minGrade=120;
+    // infile>>name>>test1>>test2>>finalTest;
+    while(!infile.eof())
+    {
+      //  semesterAverage=computeAverage(test1,test2,finalTest);// infile>>test1>>test2>>finalTest;
+        // while(!infile.eof()){
+
+        if(semesterAverage>maxGrade)
+            maxGrade=semesterAverage;
+        if
+        ( semesterAverage<minGrade)
+            minGrade=semesterAverage;
+        //infile>>test1>>test2>>finalTest;
+        // }
+
+        //  cout<<"THe  maximum Grade is  :  "<<maxGrade<<"The minimum  Grade is  :   "<<minGrade<<endl;
+        //infile>>test1>>test2>>finalTest;
+        infile>>name>>test1>>test2>>finalTest;
+
+
+
+        /*   infile>>finalGrade;
+           while(!infile.eof())
+           {
+               if (finalGrade>maxLetter)
+                   maxLetter=finalGrade;
+               infile>>finalGrade;
+           }
+           cout<<"The highest grade is    "<<maxLetter;
+           outfile<<"The highest grade is "<<maxLetter;
+           */
+
+
+
+
+    }
+   // outfile<<"\n\n\n\n\n\n \n";//\n\n"n "\n\n"n "\n\n"n "\n\n"n "\n
+    cout<<"\n\nTHe  maximum Grade is  :  "<<maxGrade<<"\nThe minimum  Grade is  :   "<<minGrade<<endl;
+    outfile<<"THe  maximum Grade is   :     "<<maxGrade<<endl;
+    outfile<<"The  minimum  Grade is  :     "<<minGrade<<endl<<endl;
+    outfile<<"   "<<"name    "<< "    "<<"   "<<"test1"<<"      "<<"test2"<<"       "<<"finalTest"<<"    ";
+    outfile<<"Semester average"<<"   "<<"Final Grade"<<endl;
+
+
+    return 0;
+
+
+}
+//**************************************
+float computeAverage(float test1,float test2,float finalTest)
+{
+    float semesterAverage=.2*test1+.3*test2+.5*finalTest;
+    return semesterAverage;
+}
+//**********************************************************************************************
+char letterGrade(float semesterAverage,char grade)
+{
+
+    char finalGrade;
+    if(semesterAverage>=90)
+        return'A';
+    else    if (semesterAverage < 90 && semesterAverage >= 80 )
+        return 'B';
+    else if( semesterAverage < 80 && semesterAverage  >=70 )
+        finalGrade='C';
+    // return 'c';
+    else if(semesterAverage < 70 && semesterAverage >= 60)
+        return 'D';
+    else if(semesterAverage < 60 )
+        return 'F';
+    else
+        ;
+    return finalGrade;
+}
+//**********************************************************************************************************8
+void printRecord(string name,float test1,float test2, float finalTest,float semesterAverage,char finalGrade)
+{
+
+    ofstream outfile;
+    outfile.open("Roster.txt");
+
+    outfile.setf(ios::fixed,ios::floatfield);          // setup output format for
+    outfile.precision(2);
+     outfile<<"\n\t\t\t          Student Grades and Average  "<<endl<<endl;
+    cout<<"\t\t\t             Student Grades and Average            "<<endl<<endl<<endl;
+
+    char letter,grade;
+
+    cout<<"   "<<"name    "<< "    "<<"   "<<"test1"<<"      "<<"test2"<<"       "<<"finalTest"<<"    ";
+    cout<<   "Semester average";
+    cout<<"   "<<"Final Grade";
+    ifstream infile;                      //create the file infile for input
+    infile.open("StudentGrades.txt");  //open the file
+
+    if ( !infile.is_open() )              //checks to see if file was opened
+    {
+        // The file could not be opened
+        cout << endl << "ERROR: Unable to open file" << endl;
+        system ("PAUSE");
+        exit(1);
+    }
+    infile>>name>>test1>>test2>>finalTest;
+    while(!infile.eof())
+    {
+        semesterAverage=computeAverage(test1,test2,finalTest);
+        finalGrade=letterGrade(semesterAverage, grade);
+
+        outfile<<endl;
+        cout<<endl<<endl;
+        outfile<<"   "<< name      << "   "<<"  " <<test1<<"        "<<test2<<"         "<<finalTest<<"       ";
+        outfile<<semesterAverage;
+        outfile<<"                 "<<finalGrade<<endl<<endl;
+        cout<<"   "<< name      << "   "<<"  " <<test1<<"        "<<test2<<"         "<<finalTest<<"       ";
+        cout<<semesterAverage;
+        cout<<"                 "<<finalGrade;
+
+
+        infile>>name>>test1>>test2>>finalTest;
+    }//end of while loop
+
+
+
+
+}
+/*                                     Student Grades and Average
+
+
+   name           test1      test2       finalTest    Semester average   Final Grade
+
+   Meredith     95        90         85       88.5                 B
+
+   Bailey     70        90         70       76                 C
+
+   Izzie     45        50         65       56.5                 F
+
+   George     75        80         72       75                 C
+
+   Cristina     72        78         78       76.8                 C
+
+   Gibbs     92        98         95       95.3                 A
+
+   Denozzo     70        70         70       70                 C
+
+   ziva     50        88         95       83.9                 B
+
+   mcgee     88        88         88       88                 B
+
+   Abby     50        65         65       62                 D
+
+ The Average of class is    90
+
+THe  maximum Grade is  :  88.5
+The minimum  Grade is  :   88.5
+
+Process returned 0 (0x0)   execution time : 0.055 s
+Press any key to continue.
+*/

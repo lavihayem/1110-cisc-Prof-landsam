@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1501908673 source:c:\users\rafi\desktop\practisecopyfile1\main.cpp
+	<cstdlib>
+	<iostream>
+

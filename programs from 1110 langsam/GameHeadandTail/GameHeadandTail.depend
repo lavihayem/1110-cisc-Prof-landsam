@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1501256488 source:c:\users\rafi\desktop\gameheadandtail\main.cpp
+	<cstdlib>
+	<iostream>
+

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1501533519 source:c:\users\rafi\desktop\callbyreferance\main.cpp
+	<cstdlib>
+	<iostream>
+
